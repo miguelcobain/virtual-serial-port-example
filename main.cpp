@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <termios.h>
+#include <inttypes.h>
 
 #define BUFFER_SIZE 128
 #define BAUDRATE    B9600
@@ -24,7 +25,7 @@ void usage(char* cmd) {
 }
 
 void* reader_thread(void* pointer) {
-    int fd = (int)pointer;
+    intptr_t fd = (intptr_t)pointer;
     char inputbyte;
     while (read(fd, &inputbyte, 1) == 1) {
         std::cout << inputbyte;
